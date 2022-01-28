@@ -6,6 +6,7 @@ import java.nio.file.Path;
 
 import org.junit.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -23,5 +24,24 @@ public class MarkdownParseTest {
         } catch (Exception e) {
             System.out.println(e.toString());
         }
+        expected = List.of("google.com");
+        try {
+            assertEquals(expected, MarkdownParse.getLinks(Files.readString(Path.of("new-test.md"))));
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        expected = List.of("google.com");
+        try {
+            assertEquals(expected, MarkdownParse.getLinks(Files.readString(Path.of("new-test2.md"))));
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        expected = List.of();
+        try {
+            assertEquals(expected, MarkdownParse.getLinks(Files.readString(Path.of("new-test3.md"))));
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
     }
+
 }
