@@ -36,6 +36,13 @@ public class MarkdownParseTest {
 
     @Test
     public void testFile4() throws IOException{
+        String contents = Files.readString(Path.of("./test-file-4.md"));
+        List<String> expect = List.of("");
+        assertEquals(expect, MarkdownParse.getLinks(contents));
+    }
+
+    @Test
+    public void testFile5() throws IOException{
         String contents = Files.readString(Path.of("./image-test.md"));
         List<String> expect = List.of("thisisanimage.png", "alink.com");
         assertEquals(expect, MarkdownParse.getLinks(contents));
