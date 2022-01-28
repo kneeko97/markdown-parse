@@ -3,4 +3,4 @@
 [a link!](https://something.com)
 [another link!](some-page.html)
 
-some paragraph text after the linkss
+some added text after the links
