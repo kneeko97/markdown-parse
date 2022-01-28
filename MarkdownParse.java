@@ -32,7 +32,8 @@ public class MarkdownParse {
     public static ArrayList<String> getLinks(String markdown) {
         ArrayList<String> toReturn = new ArrayList<>();
         // String regex = "(?:__|[*#])|[^!]\\[(.*?)\\]\\(.*?\\)";
-        String regex = "[^!]\\[.*\\]+\\((.*)\\)";
+        // String regex = "[^!]\\[.*\\]+\\((.*)\\)";
+        String regex = "(?<!!)\\[.*\\]+\\((.*)\\)";
         // Matcher matcher = Pattern.compile("?=(" + regex + "))").matcher(markdown);
         Matcher matcher = Pattern.compile(regex).matcher(markdown);
 
