@@ -1,3 +1,3 @@
 # Title
 
-![image](thisisanimage)
+![image](thisisanimage.png)

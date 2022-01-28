@@ -1,4 +1,5 @@
 # Title
 
-[[a link!]]heyaddingarandomg(somethin)
-[another link!](some-page.html)
+[link1](www.thislinkshouldwork.com)
+[a link!]heyaddingarandomg(somethin.com)
+[link2](www.thislinkshouldalsowork.com)
