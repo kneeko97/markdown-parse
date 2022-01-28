@@ -6,11 +6,19 @@ import java.nio.file.Path;
 
 import org.junit.*;
 
-import java.util.ArrayList;
+// import java.util.ArrayList;
 import java.util.List;
 
 
 public class MarkdownParseTest {
+    public static void getLinksTest(String filename, List<String> expected) {
+        try {
+            assertEquals(expected, MarkdownParse.getLinks(Files.readString(Path.of(filename))));
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+    }
+
     @Test
     public void addition() {
         assertEquals(2, 1 + 1);
@@ -19,29 +27,27 @@ public class MarkdownParseTest {
     @Test
     public void testGetLinks1() {
         List<String> expected = List.of("https://something.com", "some-page.html");
-        try {
-            assertEquals(expected, MarkdownParse.getLinks(Files.readString(Path.of("test-file.md"))));
-        } catch (Exception e) {
-            System.out.println(e.toString());
-        }
+        getLinksTest("test-file.md", expected);
+        
+        // My tests
         expected = List.of("google.com");
-        try {
-            assertEquals(expected, MarkdownParse.getLinks(Files.readString(Path.of("new-test.md"))));
-        } catch (Exception e) {
-            System.out.println(e.toString());
-        }
+        getLinksTest("new-test.md", expected);
         expected = List.of("google.com");
-        try {
-            assertEquals(expected, MarkdownParse.getLinks(Files.readString(Path.of("new-test2.md"))));
-        } catch (Exception e) {
-            System.out.println(e.toString());
-        }
+        getLinksTest("new-test2.md", expected);
         expected = List.of();
-        try {
-            assertEquals(expected, MarkdownParse.getLinks(Files.readString(Path.of("new-test3.md"))));
-        } catch (Exception e) {
-            System.out.println(e.toString());
-        }
+        getLinksTest("new-test3.md", expected);
+
+        expected = List.of("https://something.com", "some-page.html");
+        getLinksTest("test-file2.md", expected);
+        expected = List.of();
+        getLinksTest("test-file3.md", expected);
+        getLinksTest("test-file4.md", expected);
+        getLinksTest("test-file5.md", expected);
+        getLinksTest("test-file6.md", expected);
+        getLinksTest("test-file7.md", expected);
+        expected = List.of("a link on the first line");
+        getLinksTest("test-file8.md", expected);
+
     }
 
 }
