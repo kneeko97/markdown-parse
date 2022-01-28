@@ -17,27 +17,27 @@ public class MarkdownParseTest {
     @Test 
     public void testFile1() throws IOException{
         String contents = Files.readString(Path.of("./test-file.md"));
-        List<String> expect = List.of("https://something.com","some-page.html");
+        List<String> expect = List.of("https://thiswillwork.com","willworktoo.html");
         assertEquals(expect, MarkdownParse.getLinks(contents));
     }
     @Test
     public void testFile2() throws IOException{
         String contents = Files.readString(Path.of("./test-file-2.md"));
-        List<String> expect = List.of("www.something[hihi].com","www.somepage[].com");
+        List<String> expect = List.of("https://something.com","some-page.html");
         assertEquals(expect, MarkdownParse.getLinks(contents));
     }
 
     @Test
     public void testFile3() throws IOException{
         String contents = Files.readString(Path.of("./break-file.md"));
-        List<String> expect = List.of("somethin","some-page.html");
+        List<String> expect = List.of("www.thislinkshouldwork.com","thislinkshouldworkaswell.html");
         assertEquals(expect, MarkdownParse.getLinks(contents));
     }
 
     @Test
     public void testFile4() throws IOException{
         String contents = Files.readString(Path.of("./image-test.md"));
-        List<String> expect = List.of("this is an image");
+        List<String> expect = List.of("thisisanimage.png");
         assertEquals(expect, MarkdownParse.getLinks(contents));
     }
 }

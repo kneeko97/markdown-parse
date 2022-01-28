@@ -1,4 +1,6 @@
 # Title 
 
-[[link 1!](www.something[hihi].com) 
-[link 2!](www.somepage[].com)
+[a link!](https://something.com)
+[another link!](some-page.html)
+
+some paragraph text after the links
