@@ -2,7 +2,7 @@
 
 ## Bug 1:
 
-[test-file-2](https://github.com/kneeko97/markdown-parse/blob/main/test-file-2.md)
+[Bug 1 - test file](https://github.com/kneeko97/markdown-parse/blob/main/test-file-2.md)
 
 ![ouput](symptom1.png)
 
@@ -10,7 +10,7 @@
 
 ## Bug 2: 
 
-[test-file-3](https://github.com/kneeko97/markdown-parse/blob/main/test-file-3.md)
+[Bug 2 - test file](https://github.com/kneeko97/markdown-parse/blob/main/test-file-3.md)
 
 ![ouput](symptom2.png)
 
@@ -18,7 +18,7 @@
 
 ## Bug 3: 
 
-[test-file-4](https://github.com/kneeko97/markdown-parse/blob/main/test-file-4.md)
+[Bug 3 - test file](https://github.com/kneeko97/markdown-parse/blob/main/test-file-4.md)
 
 ![ouput](symptom3.png)
 
