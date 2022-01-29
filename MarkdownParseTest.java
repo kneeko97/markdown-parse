@@ -22,21 +22,21 @@ public class MarkdownParseTest {
     }
     @Test
     public void testFile2() throws IOException{
-        String contents = Files.readString(Path.of("./test-file-1.md"));
+        String contents = Files.readString(Path.of("./test-file-2.md"));
         List<String> expect = List.of("https://something.com","some-page.html");
         assertEquals(expect, MarkdownParse.getLinks(contents));
     }
 
     @Test
     public void testFile3() throws IOException{
-        String contents = Files.readString(Path.of("./test-file-2.md"));
+        String contents = Files.readString(Path.of("./test-file-3.md"));
         List<String> expect = List.of("www.thislinkshouldwork.com","thislinkshouldworkaswell.html");
         assertEquals(expect, MarkdownParse.getLinks(contents));
     }
 
     @Test
     public void testFile4() throws IOException{
-        String contents = Files.readString(Path.of("./test-file-3.md"));
+        String contents = Files.readString(Path.of("./test-file-4.md"));
         List<String> expect = List.of("");
         assertEquals(expect, MarkdownParse.getLinks(contents));
     }

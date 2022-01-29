@@ -1,5 +1,6 @@
-# Title
+# Title 
 
-[link1!](www.thislinkshouldwork.com)
-[a link!] random text ( https://shouldnotwork.com)
-[link2!](thislinkshouldworkaswell.html)
+[a link!](https://something.com)
+[another link!](some-page.html)
+
+adding text after the link
