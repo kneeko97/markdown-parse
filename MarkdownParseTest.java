@@ -48,6 +48,8 @@ public class MarkdownParseTest {
         expected = List.of("a link on the first line");
         getLinksTest("test-file8.md", expected);
 
+        expected = List.of();
+        getLinksTest("new-test4.md", expected);
     }
 
 }
