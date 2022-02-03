@@ -50,6 +50,7 @@ public class MarkdownParseTest {
 
         expected = List.of();
         getLinksTest("new-test4.md", expected);
+        getLinksTest("new-test5.md", expected);
     }
 
 }

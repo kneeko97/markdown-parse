@@ -34,6 +34,7 @@ public class MarkdownParse {
         // String regex = "(?:__|[*#])|[^!]\\[(.*?)\\]\\(.*?\\)";
         // String regex = "[^!]\\[.*\\]+\\((.*)\\)";
         String regex = "(?<!!)\\[.*\\]+\\((.*)\\)";
+        // String regex = "(?<!!)\\[.+\\]+\\((.*)\\)";
         // Matcher matcher = Pattern.compile("?=(" + regex + "))").matcher(markdown);
         Matcher matcher = Pattern.compile(regex).matcher(markdown);
 
