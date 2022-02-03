@@ -32,10 +32,12 @@ public class MarkdownParseTest {
         // My tests
         expected = List.of("google.com");
         getLinksTest("new-test.md", expected);
-        expected = List.of("google.com");
         getLinksTest("new-test2.md", expected);
         expected = List.of();
         getLinksTest("new-test3.md", expected);
+        getLinksTest("new-test4.md", expected);
+        expected = List.of("google.com");
+        getLinksTest("new-test5.md", expected);
 
         expected = List.of("https://something.com", "some-page.html");
         getLinksTest("test-file2.md", expected);
@@ -45,14 +47,7 @@ public class MarkdownParseTest {
         getLinksTest("test-file5.md", expected);
         getLinksTest("test-file6.md", expected);
         getLinksTest("test-file7.md", expected);
-        expected = List.of("a link on the first line");
         getLinksTest("test-file8.md", expected);
-
-        expected = List.of();
-        getLinksTest("new-test4.md", expected);
-        expected = List.of("google.com", "(google.com)");
-        
-        getLinksTest("new-test5.md", expected);
     }
 
 }
