@@ -1,4 +1,3 @@
 # title
 
-[]link goes here!
-[link](shouldwork.com)
+![link](shouldwork.com)
