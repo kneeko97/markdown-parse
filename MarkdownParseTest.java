@@ -10,41 +10,62 @@ import java.nio.file.Path;
 import java.util.List;
 
 public class MarkdownParseTest {
+    // @Test
+    // public void addition() {
+    //     assertEquals(4, 2 + 2);
+    // }
+    // @Test 
+    // public void testFile1() throws IOException{
+    //     String contents = Files.readString(Path.of("./test-file.md"));
+    //     List<String> expect = List.of("https://thiswillwork.com","willworktoo.html");
+    //     assertEquals(expect, MarkdownParse.getLinks(contents));
+    // }
+    // @Test
+    // public void testFile2() throws IOException{
+    //     String contents = Files.readString(Path.of("./test-file-2.md"));
+    //     List<String> expect = List.of("https://something.com","some-page.html");
+    //     assertEquals(expect, MarkdownParse.getLinks(contents));
+    // }
+
+    // @Test
+    // public void testFile3() throws IOException{
+    //     String contents = Files.readString(Path.of("./test-file-3.md"));
+    //     List<String> expect = List.of("www.thislinkshouldwork.com","thislinkshouldworkaswell.html");
+    //     assertEquals(expect, MarkdownParse.getLinks(contents));
+    // }
+
+    // @Test
+    // public void testFile4() throws IOException{
+    //     String contents = Files.readString(Path.of("./test-file-4.md"));
+    //     List<String> expect = List.of("shouldwork.com");
+    //     assertEquals(expect, MarkdownParse.getLinks(contents));
+    // }
+
+    // @Test
+    // public void testFile5() throws IOException{
+    //     String contents = Files.readString(Path.of("./image-test.md"));
+    //     List<String> expect = List.of("thisisanimage.png", "alink.com");
+    //     assertEquals(expect, MarkdownParse.getLinks(contents));
+    // }
+
     @Test
-    public void addition() {
-        assertEquals(4, 2 + 2);
-    }
-    @Test 
-    public void testFile1() throws IOException{
-        String contents = Files.readString(Path.of("./test-file.md"));
-        List<String> expect = List.of("https://thiswillwork.com","willworktoo.html");
-        assertEquals(expect, MarkdownParse.getLinks(contents));
-    }
-    @Test
-    public void testFile2() throws IOException{
-        String contents = Files.readString(Path.of("./test-file-2.md"));
-        List<String> expect = List.of("https://something.com","some-page.html");
+    public void testSpaceAfterParen() {
+        String contents = "[title]( space-in-url.com)";
+        List<String> expect = List.of("space-in-url.com");
         assertEquals(expect, MarkdownParse.getLinks(contents));
     }
 
     @Test
-    public void testFile3() throws IOException{
-        String contents = Files.readString(Path.of("./test-file-3.md"));
-        List<String> expect = List.of("www.thislinkshouldwork.com","thislinkshouldworkaswell.html");
+    public void testSpaceBeforeParen() {
+        String contents = "[title] (space-in-url.com)";
+        List<String> expect = List.of();
         assertEquals(expect, MarkdownParse.getLinks(contents));
     }
 
     @Test
-    public void testFile4() throws IOException{
-        String contents = Files.readString(Path.of("./test-file-4.md"));
-        List<String> expect = List.of("shouldwork.com");
-        assertEquals(expect, MarkdownParse.getLinks(contents));
-    }
-
-    @Test
-    public void testFile5() throws IOException{
-        String contents = Files.readString(Path.of("./image-test.md"));
-        List<String> expect = List.of("thisisanimage.png", "alink.com");
+    public void testExtraBracketImage() {
+        String contents = "[![title](should-not-count.com)";
+        List<String> expect = List.of();
         assertEquals(expect, MarkdownParse.getLinks(contents));
     }
 }
