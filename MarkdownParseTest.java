@@ -45,9 +45,27 @@ public class MarkdownParseTest {
         getLinksTest("test-file3.md", expected);
         getLinksTest("test-file4.md", expected);
         getLinksTest("test-file5.md", expected);
+        expected = List.of("https://something.com");
         getLinksTest("test-file6.md", expected);
+        expected = List.of();
         getLinksTest("test-file7.md", expected);
         getLinksTest("test-file8.md", expected);
+        getLinksTest("test-file9.md", expected);
+        getLinksTest("test-file10.md", expected);
+        expected = List.of("should-be-trimmed.com");
+        getLinksTest("test-file11.md", expected);
+        getLinksTest("test-file12.md", expected);
+        expected = List.of();
+        // getLinksTest("test-file13.md", expected);
     }
 
+    @Test
+    public void testSnippets() {
+        List<String> expected = List.of();
+
+        // getLinksTest("test-snippet1.md", expected);
+        // getLinksTest("test-snippet2.md", expected);
+        getLinksTest("test-snippet3.md", expected);
+
+    }
 }

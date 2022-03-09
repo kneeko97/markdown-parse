@@ -36,7 +36,8 @@ public class MarkdownParse {
         Matcher matcher = Pattern.compile(regex).matcher(markdown);
 
         while(matcher.find()) {
-            toReturn.add(matcher.group(1));
+            // toReturn.add(matcher.group(1));
+            toReturn.add(matcher.group(1).replaceAll(" ", ""));
         }
 
         return toReturn;
