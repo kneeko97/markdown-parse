@@ -32,8 +32,11 @@ public class MarkdownParse {
     public static Map<String, List<String>> getLinks(File dirOrFile) throws IOException {
         Map<String, List<String>> result = new HashMap<>();
         if(dirOrFile.isDirectory()) {
+            int counter = 0;
             for(File f: dirOrFile.listFiles()) {
                 result.putAll(getLinks(f));
+                counter++;
+                System.out.println(counter);
             }
             return result;
         }
@@ -83,9 +86,22 @@ public class MarkdownParse {
         return toReturn;
     }
     public static void main(String[] args) throws IOException {
-        Path fileName = Path.of(args[0]);
-        String contents = Files.readString(fileName);
-        ArrayList<String> links = getLinks(contents);
-        System.out.println(links);
+        // Path fileName = Path.of(args[0]);
+        // String contents = Files.readString(fileName);
+        // ArrayList<String> links = getLinks(contents);
+        // System.out.println(links);
+
+        Path file = Path.of(args[0]);
+        File fileName = file.toFile();
+
+        if(fileName.isDirectory()){
+            Map<String, List<String>> links = getLinks(fileName);
+            System.out.println(links);
+        }
+        else{
+            ArrayList<String> links = getLinks(Files.readString(file));
+            System.out.println(links);
+        }
+        
     }
 }
