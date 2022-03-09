@@ -55,33 +55,42 @@ public class MarkdownParse {
         ArrayList<String> toReturn = new ArrayList<>();
         // find the next [, then find the ], then find the (, then take up to
         // the next )
+
         int currentIndex = 0;
         while(currentIndex < markdown.length()) {
+
             int nextOpenBracket = markdown.indexOf("[", currentIndex);
-            int nextCodeBlock = markdown.indexOf("\n```");
-            if(nextCodeBlock < nextOpenBracket && nextCodeBlock != -1) {
-                int endOfCodeBlock = markdown.indexOf("\n```");
-                currentIndex = endOfCodeBlock + 1;
-                continue;
-            }
+       
             int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
             int openParen = markdown.indexOf("(", nextCloseBracket);
-
-            // The close paren we need may not be the next one in the file
-            int closeParen = findCloseParen(markdown, openParen);
+            int closeParen = markdown.indexOf(")", openParen);
+            if(nextOpenBracket == -1 || nextCloseBracket == -1 ||
+                        openParen == -1 || closeParen == -1) {
+                break;
+            }
             
-            if(nextOpenBracket == -1 || nextCloseBracket == -1
-                  || closeParen == -1 || openParen == -1) {
-                return toReturn;
-            }
-            String potentialLink = markdown.substring(openParen + 1, closeParen).trim();
-            if(potentialLink.indexOf(" ") == -1 && potentialLink.indexOf("\n") == -1) {
-                toReturn.add(potentialLink);
-                currentIndex = closeParen + 1;
-            }
-            else {
+            // check if there is an open bracket in between nextOpenBracket and 
+            // nextCloseBracket. If so continue... (write the if statement)
+
+            if(nextOpenBracket != 0 && markdown.charAt(nextOpenBracket - 1) == '!') {
                 currentIndex = currentIndex + 1;
+                continue;
             }
+
+            // Can't be out of bounds because check of -1 for all indices 
+            // enforces that nextCloseBracket can't be the last character in file
+            if(markdown.charAt(nextCloseBracket + 1) != '('){
+                currentIndex = nextCloseBracket + 1;
+                continue;
+            } 
+
+            String link = markdown.substring(openParen + 1, closeParen).trim();
+        
+            if(link.indexOf(" ") == -1) {
+                toReturn.add(link);
+            }
+            currentIndex = closeParen + 1;
+            
         }
         return toReturn;
     }
