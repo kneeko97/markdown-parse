@@ -1,57 +1,53 @@
 // File reading code from https://howtodoinjava.com/java/io/java-read-file-to-string-examples/
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MarkdownParse {
+    // lol
+    // public static ArrayList<String> getLinks(String markdown) {
+    //     ArrayList<String> toReturn = new ArrayList<>();
+    //     // find the next [, then find the ], then find the (, then take up to
+    //     // the next )
+    //     int currentIndex = 0;
+    //     System.out.println(currentIndex);
+    //     int lastClosedParen = markdown.lastIndexOf(")");
+    //     while(currentIndex < markdown.length()) {
+    //         int nextOpenBracket = markdown.indexOf("[", currentIndex);
+    //         int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
+    //         int openParen = markdown.indexOf("(", nextCloseBracket);
+    //         int closeParen = markdown.indexOf(")", openParen);
+    //         toReturn.add(markdown.substring(openParen + 1, closeParen));
+    //         currentIndex = closeParen + 1;
+    //         System.out.println(currentIndex);
+    //         if (closeParen == lastClosedParen) {
+    //             break;
+    //         }
+    //     }
+    //     return toReturn;
+    // }
+
     public static ArrayList<String> getLinks(String markdown) {
         ArrayList<String> toReturn = new ArrayList<>();
-        // find the next [, then find the ], then find the (, then take up to
-        // the next )
+        String regex = "(?<!!)\\[.+\\]+\\((.*)\\)";
+        Matcher matcher = Pattern.compile(regex).matcher(markdown);
 
-        int currentIndex = 0;
-        while(currentIndex < markdown.length()) {
-
-            int nextOpenBracket = markdown.indexOf("[", currentIndex);
-       
-            int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
-            int openParen = markdown.indexOf("(", nextCloseBracket);
-            int closeParen = markdown.indexOf(")", openParen);
-            if(nextOpenBracket == -1 || nextCloseBracket == -1 ||
-                        openParen == -1 || closeParen == -1) {
-                break;
-            }
-            
-            // check if there is an open bracket in between nextOpenBracket and 
-            // nextCloseBracket. If so continue... (write the if statement)
-
-            if(nextOpenBracket != 0 && markdown.charAt(nextOpenBracket - 1) == '!') {
-                currentIndex = currentIndex + 1;
-                continue;
-            }
-
-            // Can't be out of bounds because check of -1 for all indices 
-            // enforces that nextCloseBracket can't be the last character in file
-            if(markdown.charAt(nextCloseBracket + 1) != '('){
-                currentIndex = nextCloseBracket + 1;
-                continue;
-            } 
-
-            String link = markdown.substring(openParen + 1, closeParen).trim();
-        
-            if(link.indexOf(" ") == -1) {
-                toReturn.add(link);
-            }
-            currentIndex = closeParen + 1;
-            
+        while(matcher.find()) {
+            // toReturn.add(matcher.group(1));
+            toReturn.add(matcher.group(1).replaceAll(" ", ""));
         }
+
         return toReturn;
     }
     public static void main(String[] args) throws IOException {
-		Path fileName = Path.of(args[0]);
+        Path fileName = Path.of(args[0]);
 	    String contents = Files.readString(fileName);
         ArrayList<String> links = getLinks(contents);
         System.out.println(links);
+        
     }
 }
